@@ -1,0 +1,252 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Custom Properties ── */
+:root {
+  --orange-glow: rgba(249, 115, 22, 0.15);
+  --card-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --card-shadow-hover: 0 10px 25px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.04);
+}
+
+/* ── Base ── */
+html { scroll-behavior: smooth; }
+
+/* ── Scroll Animations ── */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Card Styles ── */
+.card-elevated {
+  background: white;
+  border-radius: 1rem;
+  border: 1px solid #f1f5f9;
+  box-shadow: var(--card-shadow);
+  transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+.card-elevated:hover {
+  box-shadow: var(--card-shadow-hover);
+  border-color: #fed7aa;
+  transform: translateY(-2px);
+}
+
+.card-warm {
+  background: linear-gradient(135deg, #fff7ed 0%, #ffffff 100%);
+  border-radius: 1rem;
+  border: 1px solid #fed7aa;
+  box-shadow: var(--card-shadow);
+}
+
+/* ── Glass Card ── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1rem;
+}
+
+/* ── Gradient Text ── */
+.gradient-text {
+  background: linear-gradient(135deg, #f97316, #fb923c, #fbbf24);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Bar Animate ── */
+.bar-animate {
+  width: 0;
+  animation: barGrow 1s ease-out forwards;
+}
+@keyframes barGrow {
+  to { width: var(--bar-width); }
+}
+
+/* ── Hero Pattern ── */
+.hero-pattern {
+  position: relative;
+  overflow: hidden;
+}
+.hero-pattern::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(249, 115, 22, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+/* ── Table Pro ── */
+.table-pro th {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}
+
+/* ── Breadcrumb Pills ── */
+.breadcrumb-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #64748b;
+  background: #f8fafc;
+  transition: all 0.2s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.breadcrumb-pill:hover {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+/* ── Ad Slots ── */
+.ad-slot {
+  min-height: 90px;
+  border: 1px dashed #e2e8f0;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #cbd5e1;
+  font-size: 0.75rem;
+  background: #fafafa;
+}
+
+/* ── FAQ Expand ── */
+details summary { cursor: pointer; list-style: none; }
+details summary::-webkit-details-marker { display: none; }
+details summary .faq-chevron {
+  transition: transform 0.25s ease;
+}
+details[open] summary .faq-chevron {
+  transform: rotate(180deg);
+}
+
+/* ── Custom Range Input ── */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 3px;
+  background: #e2e8f0;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(249, 115, 22, 0.3);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(249, 115, 22, 0.3);
+}
+
+/* ── Donut Chart ── */
+.donut-chart {
+  border-radius: 50%;
+  position: relative;
+}
+.donut-center {
+  position: absolute;
+  inset: 25%;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* ── Route Line Animation ── */
+.route-line {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: routeLine 1.5s ease-out forwards;
+}
+@keyframes routeLine {
+  to { stroke-dashoffset: 0; }
+}
+
+/* ── Checkbox Styles ── */
+.checklist-item input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  position: relative;
+}
+.checklist-item input[type="checkbox"]:checked {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  border-color: #ea580c;
+}
+.checklist-item input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 11px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* ── Seasonal Chart ── */
+.season-bar {
+  transition: height 0.6s ease-out;
+}
+
+/* ── Autocomplete ── */
+.autocomplete-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  border: 1px solid #e2e8f0;
+  max-height: 280px;
+  overflow-y: auto;
+  z-index: 50;
+}
+.autocomplete-item {
+  padding: 0.65rem 1rem;
+  cursor: pointer;
+  transition: background 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.autocomplete-item:hover,
+.autocomplete-item.active {
+  background: #fff7ed;
+}
