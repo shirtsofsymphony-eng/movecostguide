@@ -399,4 +399,12 @@ export const cityData = {
     vibe: "Boise has transformed from a quiet mountain town into one of the fastest-growing cities in America. The Boise River Greenbelt, access to world-class skiing, and a tight-knit community keep quality of life high.",
     topNeighborhoods: ["North End", "Hyde Park", "Boise Bench", "Harris Ranch", "Downtown"],
   },
+  "detroit-mi": {
+    costOfLivingIndex: 89,
+    avgTempHigh: 58,
+    avgTempLow: 39,
+    stateIncomeTax: 0.0425,
+    vibe: "Detroit is a city of reinvention. From Motown to motors to a thriving arts and food scene, the comeback is real. Affordable housing, passionate neighborhoods, and a gritty creative energy make it one of the most exciting cities in the Midwest.",
+    topNeighborhoods: ["Corktown", "Midtown", "West Village", "Brush Park", "Mexicantown"],
+  },
 };
