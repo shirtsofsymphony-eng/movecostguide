@@ -321,7 +321,7 @@ export default function MovingRoutePage({ params }) {
               </div>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li className="flex items-start gap-2"><CheckIcon className="w-4 h-4 text-emerald-500 mt-0.5 shrink-0" /> Truck rental + gas + equipment</li>
-                <li className="flex items-start gap-2"><CheckIcon className="w-4 h-4 text-emerald-500 mt-0.5 shrink-0" /> Most affordable option</li>
+                <li className="flex items-start gap-2"><CheckIcon className="w-4 h-4 text-emerald-500 mt-0.5 shrink-0" /> No labor costs — you do the lifting</li>
                 <li className="flex items-start gap-2"><CheckIcon className="w-4 h-4 text-emerald-500 mt-0.5 shrink-0" /> Full control over your schedule</li>
               </ul>
             </div>

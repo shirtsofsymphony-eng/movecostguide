@@ -184,9 +184,9 @@ function calcFullServiceLocal(home, miles, costIdx, month, selectedExtras) {
   });
 
   const transportation = roundRange({
-    low: 150 + miles * 2,
-    mid: 250 + miles * 3,
-    high: 350 + miles * 4,
+    low: 250 + miles * 2.5,
+    mid: 350 + miles * 3.5,
+    high: 450 + miles * 4.5,
   });
 
   const packing = roundRange({
@@ -245,9 +245,9 @@ function calcPartialService(home, miles, costIdx, month, selectedExtras) {
       high: reducedHours * home.crew * 38 * costIdx,
     });
     transportation = roundRange({
-      low: 150 + miles * 2,
-      mid: 250 + miles * 3,
-      high: 350 + miles * 4,
+      low: 250 + miles * 2.5,
+      mid: 350 + miles * 3.5,
+      high: 450 + miles * 4.5,
     });
   } else {
     labor = roundRange({
@@ -301,33 +301,38 @@ function calcPartialService(home, miles, costIdx, month, selectedExtras) {
 // ---------------------------------------------------------------------------
 // DIY move
 // ---------------------------------------------------------------------------
-function calcDIY(home, miles) {
+function calcDIY(home, miles, month) {
   const isLocal = miles < 100;
+  const seasonal = seasonalMultipliers[month] ?? 1.0;
+  // Dampen seasonal effect for DIY (truck companies adjust less than movers)
+  const diySeasonalFactor = 1 + (seasonal - 1) * 0.5;
+
+  // Truck size multiplier based on home weight (heavier = bigger truck = more $)
+  // studio=2000lb→0.7x, 2BR=5000lb→1.0x, 5BR+=14000lb→1.5x
+  const truckSizeFactor = 0.5 + (home.weight / 10000);
 
   let truckRental;
   if (isLocal) {
-    truckRental = range(50, 100);
-  } else {
-    // Scale truck rental cost by distance for long-distance moves
-    const distFactor = Math.min(miles / 2000, 1);
     truckRental = roundRange({
-      low: 800 + distFactor * 400,
-      mid: 1250 + distFactor * 650,
-      high: 2500 + distFactor * 0,
+      low: 40 * truckSizeFactor,
+      mid: 75 * truckSizeFactor,
+      high: 120 * truckSizeFactor,
     });
-    // Simplify: linear interpolation based on distance
+  } else {
     truckRental = roundRange({
-      low: 800 + (miles / 3000) * 700,
-      mid: 1200 + (miles / 3000) * 1000,
-      high: 1700 + (miles / 3000) * 800,
+      low: (600 + (miles / 3000) * 600) * truckSizeFactor,
+      mid: (900 + (miles / 3000) * 800) * truckSizeFactor,
+      high: (1300 + (miles / 3000) * 700) * truckSizeFactor,
     });
   }
 
-  // Gas: miles * 2 (round-trip factor) / 8 mpg * gas price
+  // Gas: one-way trip / mpg * gas price (drop off truck at destination)
+  // Bigger trucks get worse mileage: studio ~10mpg, 5BR ~6mpg
+  const mpg = 12 - (home.weight / 3000);
   const gas = roundRange({
-    low: (miles * 2) / 8 * 3.50,
-    mid: (miles * 2) / 8 * 4.00,
-    high: (miles * 2) / 8 * 4.50,
+    low: miles / mpg * 3.50,
+    mid: miles / mpg * 4.00,
+    high: miles / mpg * 4.50,
   });
 
   const equipment = range(100, 300);
@@ -338,21 +343,22 @@ function calcDIY(home, miles) {
   const packing = { low: 0, mid: 0, high: 0 };
   const tips = { low: 0, mid: 0, high: 0 };
 
-  const total = roundRange(
+  const preSeasonalTotal = roundRange(
     addRanges(truckRental, gas, equipment, insurance),
   );
+  const total = scaleRange(preSeasonalTotal, diySeasonalFactor);
 
   return {
     total,
     breakdown: {
       labor,
-      transportation: roundRange(addRanges(truckRental, gas)),
+      transportation: scaleRange(roundRange(addRanges(truckRental, gas)), diySeasonalFactor),
       packing,
-      insurance: roundRange(insurance),
+      insurance: scaleRange(roundRange(insurance), diySeasonalFactor),
       tips,
       extras: { low: 0, mid: 0, high: 0 },
     },
-    seasonalMultiplier: 1.0,
+    seasonalMultiplier: diySeasonalFactor,
   };
 }
 
@@ -378,7 +384,7 @@ export function calculateMovingCost(originCity, destCity, options = {}) {
 
   switch (moveType) {
     case 'diy':
-      result = calcDIY(home, miles);
+      result = calcDIY(home, miles, month);
       break;
     case 'partial':
       result = calcPartialService(home, miles, costIdx, month, selectedExtras);
@@ -402,18 +408,20 @@ export function calculateMovingCost(originCity, destCity, options = {}) {
 // Quick estimate for city hub pages (2BR, current month)
 // ---------------------------------------------------------------------------
 export function getQuickEstimate(originCity, destCity) {
-  const currentMonth = new Date().getMonth();
+  // Use September (month 8, multiplier 1.10) as a stable "average" month
+  // so static pages don't show wildly different costs depending on build date
+  const avgMonth = 8;
 
   const full = calculateMovingCost(originCity, destCity, {
     homeSize: '2br',
-    month: currentMonth,
+    month: avgMonth,
     extras: [],
     moveType: 'full',
   });
 
   const diy = calculateMovingCost(originCity, destCity, {
     homeSize: '2br',
-    month: currentMonth,
+    month: avgMonth,
     extras: [],
     moveType: 'diy',
   });
