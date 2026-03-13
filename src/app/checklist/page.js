@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { SITE_NAME } from '../../data/site-data';
 import MovingChecklist from '../../components/MovingChecklist';
 import { HomeIcon, ChevronRightIcon, ClipboardIcon } from '../../components/icons';
+import AdUnit from '../../components/AdUnit';
 
 export const metadata = {
   title: `Free 8-Week Moving Checklist (2026) | ${SITE_NAME}`,
@@ -27,7 +28,7 @@ export default function ChecklistPage() {
 
       {/* ── Ad slot: top ── */}
       <div className="max-w-4xl mx-auto px-4 pt-4">
-        <div className="ad-slot">Ad</div>
+        <AdUnit slot="top" />
       </div>
 
       {/* ── Header ── */}
@@ -83,7 +84,7 @@ export default function ChecklistPage() {
 
       {/* ── Ad slot: bottom ── */}
       <div className="max-w-4xl mx-auto px-4 pb-8">
-        <div className="ad-slot">Ad</div>
+        <AdUnit slot="bottom" />
       </div>
 
       {/* ── CTA ── */}

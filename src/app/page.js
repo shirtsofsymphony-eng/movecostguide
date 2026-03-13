@@ -5,6 +5,7 @@ import { getDistanceInfo } from '../data/distances';
 import { checklistData } from '../data/checklist-data';
 import RouteSearch from '../components/RouteSearch';
 import AnimatedStats from '../components/AnimatedStats';
+import AdUnit from '../components/AdUnit';
 import {
   TruckIcon,
   MapPinIcon,
@@ -147,9 +148,7 @@ export default function HomePage() {
 
       {/* ── Ad Slot 1 ── */}
       <div className="max-w-4xl mx-auto px-4 mb-12">
-        <div className="ad-slot" data-ad="homepage-mid-1">
-          Advertisement
-        </div>
+        <AdUnit slot="mid" />
       </div>
 
       {/* ════════════════════════════════════════════════════════════════════
@@ -289,9 +288,7 @@ export default function HomePage() {
 
       {/* ── Ad Slot 2 ── */}
       <div className="max-w-4xl mx-auto px-4 mb-12">
-        <div className="ad-slot" data-ad="homepage-mid-2">
-          Advertisement
-        </div>
+        <AdUnit slot="mid" />
       </div>
 
       {/* ════════════════════════════════════════════════════════════════════
@@ -409,9 +406,7 @@ export default function HomePage() {
 
       {/* ── Ad Slot 3 ── */}
       <div className="max-w-4xl mx-auto px-4 mb-16">
-        <div className="ad-slot" data-ad="homepage-bottom">
-          Advertisement
-        </div>
+        <AdUnit slot="bottom" />
       </div>
     </>
   );

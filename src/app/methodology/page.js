@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { SITE_NAME } from '../../data/site-data';
 import { seasonalMultipliers } from '../../data/moving-costs';
 import { HomeIcon, ChevronRightIcon, InfoIcon, ChartIcon, DollarIcon, CalendarIcon, ShieldIcon, CheckIcon } from '../../components/icons';
+import AdUnit from '../../components/AdUnit';
 
 // ---------------------------------------------------------------------------
 // Metadata
@@ -43,7 +44,7 @@ export default function MethodologyPage() {
   return (
     <>
       {/* -- Ad Slot: Top -- */}
-      <div className="ad-slot max-w-5xl mx-auto px-4 mt-6" data-ad="top" />
+      <AdUnit slot="top" className="max-w-5xl mx-auto px-4 mt-6" />
 
       {/* -- Breadcrumbs -- */}
       <nav className="max-w-6xl mx-auto px-4 py-4 text-sm text-gray-500 flex items-center gap-1 flex-wrap">
@@ -308,7 +309,7 @@ export default function MethodologyPage() {
       </section>
 
       {/* -- Ad Slot: Bottom -- */}
-      <div className="ad-slot max-w-5xl mx-auto px-4 mb-8" data-ad="bottom" />
+      <AdUnit slot="bottom" className="max-w-5xl mx-auto px-4 mb-8" />
     </>
   );
 }

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { SITE_NAME } from '../../data/site-data';
 import { HomeIcon, ChevronRightIcon, DollarIcon, CalendarIcon, ClipboardIcon, TruckIcon, BoxIcon, ShieldIcon } from '../../components/icons';
+import AdUnit from '../../components/AdUnit';
 
 // ---------------------------------------------------------------------------
 // Metadata
@@ -114,7 +115,7 @@ export default function TipsPage() {
   return (
     <>
       {/* -- Ad Slot: Top -- */}
-      <div className="ad-slot max-w-5xl mx-auto px-4 mt-6" data-ad="top" />
+      <AdUnit slot="top" className="max-w-5xl mx-auto px-4 mt-6" />
 
       {/* -- Breadcrumbs -- */}
       <nav className="max-w-6xl mx-auto px-4 py-4 text-sm text-gray-500 flex items-center gap-1 flex-wrap">
@@ -191,7 +192,7 @@ export default function TipsPage() {
       </section>
 
       {/* -- Ad Slot: Bottom -- */}
-      <div className="ad-slot max-w-5xl mx-auto px-4 mb-8" data-ad="bottom" />
+      <AdUnit slot="bottom" className="max-w-5xl mx-auto px-4 mb-8" />
     </>
   );
 }

@@ -4,6 +4,7 @@ import { getQuickEstimate } from '../../../data/moving-costs';
 import { getDistanceInfo } from '../../../data/distances';
 import { cityData } from '../../../data/city-data';
 import { HomeIcon, ChevronRightIcon, MapPinIcon, ThermometerIcon, DollarIcon, KeyIcon, BuildingIcon, ArrowRightIcon } from '../../../components/icons';
+import AdUnit from '../../../components/AdUnit';
 
 // ---------------------------------------------------------------------------
 // Static params — 100 destination city pages
@@ -131,7 +132,7 @@ export default function MovingToCityPage({ params }) {
   return (
     <>
       {/* ── Ad Slot: Top ── */}
-      <div className="ad-slot max-w-5xl mx-auto px-4 mt-6" data-ad="top" />
+      <AdUnit slot="top" className="max-w-5xl mx-auto px-4 mt-6" />
 
       {/* ── Breadcrumbs ── */}
       <nav className="max-w-6xl mx-auto px-4 py-4 text-sm text-gray-500 flex items-center gap-1 flex-wrap">
@@ -255,7 +256,7 @@ export default function MovingToCityPage({ params }) {
       </section>
 
       {/* ── Ad Slot: Mid ── */}
-      <div className="ad-slot max-w-5xl mx-auto px-4 my-8" data-ad="mid" />
+      <AdUnit slot="mid" className="max-w-5xl mx-auto px-4 my-8" />
 
       {/* ── Neighborhoods Section ── */}
       {enrichment?.topNeighborhoods && enrichment.topNeighborhoods.length > 0 && (
@@ -387,7 +388,7 @@ export default function MovingToCityPage({ params }) {
       </section>
 
       {/* ── Ad Slot: Bottom ── */}
-      <div className="ad-slot max-w-5xl mx-auto px-4 mb-8" data-ad="bottom" />
+      <AdUnit slot="bottom" className="max-w-5xl mx-auto px-4 mb-8" />
     </>
   );
 }

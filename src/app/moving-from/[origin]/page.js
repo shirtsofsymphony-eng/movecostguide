@@ -3,6 +3,7 @@ import { cities, SITE_NAME } from '../../../data/site-data';
 import { getQuickEstimate } from '../../../data/moving-costs';
 import { getDistanceInfo } from '../../../data/distances';
 import { HomeIcon, ChevronRightIcon, MapPinIcon, TruckIcon, ArrowRightIcon } from '../../../components/icons';
+import AdUnit from '../../../components/AdUnit';
 
 // ---------------------------------------------------------------------------
 // Static params — 100 origin city pages
@@ -106,7 +107,7 @@ export default function MovingFromCityPage({ params }) {
   return (
     <>
       {/* ── Ad Slot: Top ── */}
-      <div className="ad-slot max-w-5xl mx-auto px-4 mt-6" data-ad="top" />
+      <AdUnit slot="top" className="max-w-5xl mx-auto px-4 mt-6" />
 
       {/* ── Breadcrumbs ── */}
       <nav className="max-w-6xl mx-auto px-4 py-4 text-sm text-gray-500 flex items-center gap-1 flex-wrap">
@@ -207,7 +208,7 @@ export default function MovingFromCityPage({ params }) {
       </section>
 
       {/* ── Ad Slot: Mid ── */}
-      <div className="ad-slot max-w-5xl mx-auto px-4 my-8" data-ad="mid" />
+      <AdUnit slot="mid" className="max-w-5xl mx-auto px-4 my-8" />
 
       {/* ── Popular Origins ── */}
       <section className="max-w-6xl mx-auto px-4 pb-16">
@@ -227,7 +228,7 @@ export default function MovingFromCityPage({ params }) {
       </section>
 
       {/* ── Ad Slot: Bottom ── */}
-      <div className="ad-slot max-w-5xl mx-auto px-4 mb-8" data-ad="bottom" />
+      <AdUnit slot="bottom" className="max-w-5xl mx-auto px-4 mb-8" />
     </>
   );
 }

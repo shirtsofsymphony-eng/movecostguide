@@ -8,6 +8,7 @@ import CostBreakdown from '../../../../../components/CostBreakdown';
 import SeasonalChart from '../../../../../components/SeasonalChart';
 import CityCompare from '../../../../../components/CityCompare';
 import RouteSchema from '../../../../../components/RouteSchema';
+import AdUnit from '../../../../../components/AdUnit';
 import { HomeIcon, ChevronRightIcon, MapPinIcon, TruckIcon, ChevronDownIcon, ClockIcon, RouteIcon, DollarIcon, CalendarIcon, CheckIcon, ArrowRightIcon, BoxIcon, ShieldIcon } from '../../../../../components/icons';
 
 // ---------------------------------------------------------------------------
@@ -161,10 +162,8 @@ export default function MovingRoutePage({ params }) {
       {/* Ad Slot: Top */}
       {/* ------------------------------------------------------------------ */}
       <div className="w-full bg-gray-50 border-b border-gray-200">
-        <div className="container py-2 text-center text-xs text-gray-400">
-          <div className="h-[90px] flex items-center justify-center border border-dashed border-gray-300 rounded bg-white">
-            Advertisement
-          </div>
+        <div className="container py-2">
+          <AdUnit slot="top" />
         </div>
       </div>
 
@@ -349,10 +348,8 @@ export default function MovingRoutePage({ params }) {
         {/* ---------------------------------------------------------------- */}
         {/* Ad Slot: After Calculator */}
         {/* ---------------------------------------------------------------- */}
-        <div className="mb-16 text-center text-xs text-gray-400">
-          <div className="h-[250px] flex items-center justify-center border border-dashed border-gray-300 rounded-xl bg-gray-50">
-            Advertisement
-          </div>
+        <div className="mb-16">
+          <AdUnit slot="mid" />
         </div>
 
         {/* ---------------------------------------------------------------- */}
@@ -391,10 +388,8 @@ export default function MovingRoutePage({ params }) {
         {/* ---------------------------------------------------------------- */}
         {/* Ad Slot: After Seasonal Chart */}
         {/* ---------------------------------------------------------------- */}
-        <div className="mb-16 text-center text-xs text-gray-400">
-          <div className="h-[250px] flex items-center justify-center border border-dashed border-gray-300 rounded-xl bg-gray-50">
-            Advertisement
-          </div>
+        <div className="mb-16">
+          <AdUnit slot="mid" />
         </div>
 
         {/* ---------------------------------------------------------------- */}
@@ -601,11 +596,7 @@ export default function MovingRoutePage({ params }) {
         {/* ---------------------------------------------------------------- */}
         {/* Ad Slot: Bottom */}
         {/* ---------------------------------------------------------------- */}
-        <div className="text-center text-xs text-gray-400">
-          <div className="h-[250px] flex items-center justify-center border border-dashed border-gray-300 rounded-xl bg-gray-50">
-            Advertisement
-          </div>
-        </div>
+        <AdUnit slot="bottom" />
       </div>
     </>
   );

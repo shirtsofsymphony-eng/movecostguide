@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { cities, SITE_NAME } from '../../../data/site-data';
 import { movingCompanies } from '../../../data/moving-companies';
 import { HomeIcon, ChevronRightIcon, MapPinIcon, StarIcon, TruckIcon, PhoneIcon, ExternalLinkIcon, ShieldIcon, BoxIcon, ArrowRightIcon, CheckIcon } from '../../../components/icons';
+import AdUnit from '../../../components/AdUnit';
 
 // ---------------------------------------------------------------------------
 // Static params — 100 city pages
@@ -78,7 +79,7 @@ export default function MoversPage({ params }) {
   return (
     <>
       {/* -- Ad Slot: Top -- */}
-      <div className="ad-slot max-w-5xl mx-auto px-4 mt-6" data-ad="top" />
+      <AdUnit slot="top" className="max-w-5xl mx-auto px-4 mt-6" />
 
       {/* -- Breadcrumbs -- */}
       <nav className="max-w-6xl mx-auto px-4 py-4 text-sm text-gray-500 flex items-center gap-1 flex-wrap">
@@ -179,7 +180,7 @@ export default function MoversPage({ params }) {
       </section>
 
       {/* -- Ad Slot: Mid -- */}
-      <div className="ad-slot max-w-5xl mx-auto px-4 my-8" data-ad="mid" />
+      <AdUnit slot="mid" className="max-w-5xl mx-auto px-4 my-8" />
 
       {/* ================================================================== */}
       {/* DIY & Truck Rental Options                                         */}
@@ -317,7 +318,7 @@ export default function MoversPage({ params }) {
       </section>
 
       {/* -- Ad Slot: Bottom -- */}
-      <div className="ad-slot max-w-5xl mx-auto px-4 mb-8" data-ad="bottom" />
+      <AdUnit slot="bottom" className="max-w-5xl mx-auto px-4 mb-8" />
     </>
   );
 }
