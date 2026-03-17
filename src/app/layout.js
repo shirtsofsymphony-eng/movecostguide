@@ -23,6 +23,9 @@ export const metadata = {
     follow: true,
     googleBot: { index: true, follow: true },
   },
+  verification: {
+    google: 'zaruwIJmoGcdIPzb3OUNGU3KNZ7T15Kw9Mpzqp6GUcw',
+  },
 };
 
 const footerRoutes = [
